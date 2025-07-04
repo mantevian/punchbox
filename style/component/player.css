@@ -1,0 +1,33 @@
+pb-player {
+    position: absolute;
+    top: 80%;
+    left: -100%;
+    translate: -40px -40px;
+
+    pointer-events: none;
+}
+
+pb-player > div.box {
+    position: absolute;
+
+    display: block;
+    width: 80px;
+    height: 80px;
+    
+    background: red;
+
+    z-index: 1;
+}
+
+pb-player > div.glove {
+    position: absolute;
+    bottom: 0;
+
+    display: block;
+    width: 80px;
+    height: 0;
+
+    background: blue;
+
+    transition: height 0.1s ease-out;
+}

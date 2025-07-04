@@ -1,4 +1,5 @@
 import { bus } from "./index";
+import type Player from "./player";
 
 export default class Game extends HTMLElement {
     keysPressed: { [key: string]: boolean } = {};
@@ -20,6 +21,12 @@ export default class Game extends HTMLElement {
         this.resize();
 
         this.tick();
+
+        requestAnimationFrame(() => this.init());
+    }
+
+    init() {
+        bus.emit("change_scene", "menu");
     }
 
     tick() {
@@ -37,5 +44,9 @@ export default class Game extends HTMLElement {
         const scale = Math.min(scaleX, scaleY);
 
         this.style.scale = `${scale}`;
+    }
+
+    getPlayer(): Player {
+        return this.querySelector("pb-player")!;
     }
 }

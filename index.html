@@ -6,10 +6,32 @@
     <title>Punchbox</title>
 
     <script type="module" src="./src/index.ts"></script>
-    <link rel="stylesheet" href="./style/main.css">
 </head>
 <body>
     <pb-game>
+        <pb-scene name="menu">
+            <h1>Punchbox</h1>
+
+            <button>
+                <span>play</span>
+                <pb-event on="click" name="change_scene" data="board"></pb-event>
+            </button>
+        </pb-scene>
+
+        <pb-scene name="board">
+            <div class="lanes">
+                <pb-lane></pb-lane>
+                <pb-lane></pb-lane>
+                <pb-lane></pb-lane>
+                <pb-lane></pb-lane>
+                <pb-lane></pb-lane>
+            </div>
+
+            <pb-player>
+                <div class="box"></div>
+                <div class="glove"></div>
+            </pb-player>
+        </pb-scene>
     </pb-game>
 </body>
 </html>
