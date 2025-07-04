@@ -1,8 +1,9 @@
+import type Spawner from "./box/spawner";
 import { bus } from "./index";
 import type Player from "./player";
 
 export default class Game extends HTMLElement {
-    keysPressed: { [key: string]: boolean } = {};
+    keysPressed: { [key: string]: boolean; } = {};
     time = 0;
 
     connectedCallback() {
@@ -22,6 +23,11 @@ export default class Game extends HTMLElement {
             this.resize();
         });
 
+        bus.on("start_game", () => {
+            bus.emit("change_scene", "board");
+            this.time = 0;
+        });
+
         this.resize();
 
         this.tick();
@@ -33,6 +39,8 @@ export default class Game extends HTMLElement {
         bus.emit("tick", this.time);
 
         this.time++;
+
+        this.querySelector("span#game-time")!.innerHTML = `${this.time}`;
 
         requestAnimationFrame(() => this.tick());
     }
@@ -48,6 +56,10 @@ export default class Game extends HTMLElement {
 
     getPlayer(): Player {
         return this.querySelector("pb-player")!;
+    }
+
+    getSpawner(): Spawner {
+        return this.querySelector("pb-spawner")!;
     }
 
     getCurrentScene(): string {

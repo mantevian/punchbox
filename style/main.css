@@ -11,3 +11,8 @@ body {
     height: 100vh;
     overflow: hidden;
 }
+
+#game {
+    width: 100vmin;
+    height: 100vmin;
+}

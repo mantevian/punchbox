@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="81.987076mm"
+   height="82.641037mm"
+   viewBox="0 0 81.987076 82.641039"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-359.4737,-13.702305)">
+    <g
+       id="g5"
+       transform="translate(-52.702634,21.190558)">
+      <rect
+         style="fill:#9e5917;fill-opacity:1;stroke:#000000;stroke-width:2.11667;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1-9"
+         width="79.870415"
+         height="60.732136"
+         x="413.23468"
+         y="13.36231" />
+      <path
+         style="fill:#3a4c66;fill-opacity:0.119905;stroke:none;stroke-width:1.85208;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         d="m 414.32257,61.840694 34.3955,-19.38978 33.43491,-21.711687 9.92246,-6.316163 0.0174,58.62969 -77.75378,0.008 z"
+         id="path5-4" />
+      <path
+         id="rect2-2"
+         style="fill:#b36e29;fill-opacity:1;stroke:#000000;stroke-width:2.11667;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         d="m 428.03554,-6.4299176 h 49.871 L 493.30366,13.16353 413.03569,13.12845 Z" />
+      <path
+         id="rect5-2-9-2-1"
+         style="fill:#ecc470;fill-opacity:1;stroke:#000000;stroke-width:1.5875;stroke-linejoin:bevel;stroke-dasharray:none"
+         d="m 427.12487,12.824756 6.92929,-18.9158997 6.69081,3.7e-4 0.0977,18.9155297 z" />
+      <path
+         id="rect5-2-9-2-1-4"
+         style="fill:#ecc470;fill-opacity:1;stroke:#000000;stroke-width:1.5875;stroke-linejoin:bevel;stroke-dasharray:none"
+         d="m 478.98757,12.824756 -6.92929,-18.9158999 -6.69081,3.7e-4 -0.0977,18.9155299 z" />
+      <path
+         id="rect5-23"
+         style="fill:#ecc470;fill-opacity:1;stroke:#000000;stroke-width:1.85208;stroke-linejoin:bevel;stroke-dasharray:none"
+         d="m 413.23468,36.981503 h 79.87041 v 13.49375 h -79.87041 z" />
+      <rect
+         style="fill:#ffea13;fill-opacity:1;stroke:#000000;stroke-width:2.11667;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4-9-2-6"
+         width="25.126537"
+         height="25.126537"
+         x="31.165123"
+         y="-465.73315"
+         transform="rotate(90)" />
+      <rect
+         style="fill:#ffea13;fill-opacity:1;stroke:#000000;stroke-width:2.11667;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4-9-2"
+         width="23.467026"
+         height="23.467026"
+         x="339.62662"
+         y="-301.25238"
+         transform="rotate(45)" />
+    </g>
+  </g>
+</svg>

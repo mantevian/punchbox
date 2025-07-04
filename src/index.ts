@@ -1,7 +1,7 @@
 import Box from "./box/box";
 import Spawner from "./box/spawner";
-import Bus from "./bus";
-import PBEventElement from "./event";
+import Bus from "./util/bus";
+import PBEventElement from "./util/event";
 import Game from "./game";
 import Lane from "./lane";
 import Player from "./player";
@@ -27,11 +27,4 @@ const elements = {
 
 for (let [k, v] of Object.entries(elements)) {
     customElements.define(`pb-${k}`, v);
-}
-
-declare global {
-    interface PBEventMap {
-        "tick": number;
-        "change_scene": string;
-    }
 }

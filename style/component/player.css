@@ -1,6 +1,6 @@
 pb-player {
     position: absolute;
-    bottom: 200px;
+    bottom: 90px;
     left: -100%;
     translate: -40px -40px;
 
@@ -13,7 +13,7 @@ pb-player > div.box {
     display: block;
     width: 80px;
     height: 80px;
-    
+
     background: red;
 
     z-index: 1;

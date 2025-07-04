@@ -2,9 +2,11 @@ import { game } from ".";
 import type Box from "./box/box";
 
 export default class Lane extends HTMLElement {
-    speed = 1;
+    speed = 1.5;
 
     connectedCallback() {
+        this.style.animationDuration = `${13 / this.speed}s`;
+
         this.addEventListener("click", () => {
             const player = game.getPlayer();
 
@@ -27,10 +29,15 @@ export default class Lane extends HTMLElement {
             return;
         }
 
-        next.remove();
+        next.addHealth(-1);
     }
 
     getNextBox(): Box | null {
         return this.firstChild as Box;
+    }
+
+    addSpeed(amount: number) {
+        this.speed = Math.max(this.speed + amount, 0.5);
+        this.style.animationDuration = `${13 / this.speed}s`;
     }
 }

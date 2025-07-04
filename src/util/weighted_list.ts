@@ -1,5 +1,7 @@
+import { nextInt } from "./random";
+
 export default class WeightedList<T> {
-    private entries: Array<{ item: T, cumulative: number }> = [];
+    private entries: Array<{ item: T, cumulative: number; }> = [];
     private sum: number = 0;
 
     add(value: T, weight: number): WeightedList<T> {
@@ -14,7 +16,7 @@ export default class WeightedList<T> {
     }
 
     next(): T | null {
-        const rand = Math.floor(Math.random() * this.sum);
+        const rand = nextInt(0, this.sum);
 
         for (let i = 0; i < this.entries.length; i++) {
             const e = this.entries[i];

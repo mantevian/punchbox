@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=1000, height=1000, initial-scale=1.0">
@@ -7,6 +8,7 @@
 
     <script type="module" src="./src/index.ts"></script>
 </head>
+
 <body>
     <pb-game>
         <pb-scene name="menu">
@@ -14,7 +16,7 @@
 
             <button>
                 <span>play</span>
-                <pb-event on="click" name="change_scene" data="board"></pb-event>
+                <pb-event on="click" name="start_game"></pb-event>
             </button>
         </pb-scene>
 
@@ -31,7 +33,35 @@
                 <div class="box"></div>
                 <div class="glove"></div>
             </pb-player>
+
+            <section id="stats">
+                <p>
+                    <span>health: </span>
+                    <span id="health"></span>
+                </p>
+
+                <p>
+                    <span>money: </span>
+                    <span id="money"></span>
+                </p>
+
+                <p>
+                    <span>attack speed: </span>
+                    <span id="attack-speed"></span>
+                </p>
+
+                <p>
+                    <span>game time: </span>
+                    <span id="game-time"></span>
+                </p>
+
+                <p>
+                    <span>big wave: </span>
+                    <span id="big-wave"></span>
+                </p>
+            </section>
         </pb-scene>
     </pb-game>
 </body>
+
 </html>

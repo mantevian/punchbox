@@ -3,7 +3,21 @@ pb-lane {
     flex-direction: column;
     align-items: center;
 
-    background: gray;
+    background-image: linear-gradient(to bottom, #3b3b3b 0px, #3b3b3b 5px, #636363 5px);
+    background-size: 100% 50px;
+    background-repeat: repeat-y;
+
+    animation: conveyor-belt 13s infinite linear;
+}
+
+@keyframes conveyor-belt {
+    from {
+        background-position-y: 0;
+    }
+    
+    to {
+        background-position-y: 800px;
+    }
 }
 
 pb-lane:hover {
