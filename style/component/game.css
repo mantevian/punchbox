@@ -1,0 +1,19 @@
+si-game {
+    display: block;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+
+    margin: auto;
+    
+    width: 1000px;
+    height: 1000px;
+
+    background: white;
+
+    transform-origin: center;
+
+    overflow: hidden;
+}
