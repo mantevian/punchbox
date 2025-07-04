@@ -1,3 +1,5 @@
+import Box from "./box/box";
+import Spawner from "./box/spawner";
 import Bus from "./bus";
 import PBEventElement from "./event";
 import Game from "./game";
@@ -19,6 +21,8 @@ const elements = {
     "event": PBEventElement,
     "lane": Lane,
     "player": Player,
+    "box": Box,
+    "spawner": Spawner,
 };
 
 for (let [k, v] of Object.entries(elements)) {

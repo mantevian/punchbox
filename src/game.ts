@@ -6,6 +6,10 @@ export default class Game extends HTMLElement {
     time = 0;
 
     connectedCallback() {
+        requestAnimationFrame(() => this.init());
+    }
+
+    init() {
         window.addEventListener("keydown", e => {
             this.keysPressed[e.code] = true;
         });
@@ -22,10 +26,6 @@ export default class Game extends HTMLElement {
 
         this.tick();
 
-        requestAnimationFrame(() => this.init());
-    }
-
-    init() {
         bus.emit("change_scene", "menu");
     }
 
@@ -48,5 +48,9 @@ export default class Game extends HTMLElement {
 
     getPlayer(): Player {
         return this.querySelector("pb-player")!;
+    }
+
+    getCurrentScene(): string {
+        return this.querySelector("pb-scene[enabled]")?.getAttribute("name") ?? "menu";
     }
 }

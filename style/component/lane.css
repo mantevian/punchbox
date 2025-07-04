@@ -1,6 +1,9 @@
 pb-lane {
-    display: block;
-    background: green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: gray;
 }
 
 pb-lane:hover {

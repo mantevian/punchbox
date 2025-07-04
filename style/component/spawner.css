@@ -1,4 +1,4 @@
-div.lanes {
+pb-spawner {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -6,7 +6,7 @@ div.lanes {
     
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    width: 800px;
+    width: 600px;
     height: 800px;
     gap: 10px;
 }

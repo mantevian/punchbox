@@ -1,0 +1,8 @@
+pb-box {
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: yellow;
+
+    position: absolute;
+}
