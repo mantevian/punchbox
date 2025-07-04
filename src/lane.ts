@@ -37,7 +37,7 @@ export default class Lane extends HTMLElement {
     }
 
     addSpeed(amount: number) {
-        this.speed = Math.max(this.speed + amount, 0.5);
+        this.speed = Math.max(this.speed + amount, 1);
         this.style.animationDuration = `${13 / this.speed}s`;
     }
 }

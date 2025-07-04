@@ -44,22 +44,26 @@ export default class Spawner extends HTMLElement {
         });
     }
 
-    spawn(options: { laneNumber: number, pos: number, health: number; type: LootTableName; }) {
+    spawn(options: { laneNumber: number, pos: number, health: number; type: LootTableName; speed: number; }) {
         const lane = this.querySelector(`pb-lane[n="${options.laneNumber}"]`)! as Lane;
         const box = document.createElement("pb-box") as Box;
         box.setAttribute("type", options.type);
         box.health = options.health;
         box.maxHealth = box.health;
         box.pos = options.pos;
+        box.speed = options.speed;
         lane.appendChild(box);
     }
 
     spawnDefault() {
+        const type = spawnTypes.next()!;
+
         this.spawn({
             laneNumber: nextInt(0, 5),
             pos: 0,
             health: nextInt(1, 4),
-            type: spawnTypes.next()!
+            type,
+            speed: 1
         });
     }
 }

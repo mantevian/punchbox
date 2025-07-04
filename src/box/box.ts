@@ -7,12 +7,13 @@ export default class Box extends HTMLElement {
     pos = 0;
     health = 1;
     maxHealth = 1;
+    speed = 1;
     healthBar: HTMLDivElement | null = null;
     private tickCallback: CustomEventCallback<"tick"> | null = null;
 
     connectedCallback() {
         this.tickCallback = bus.on("tick", () => {
-            this.pos += this.getLane().speed;
+            this.pos += this.getLane().speed * this.speed;
 
             this.style.top = `${this.pos}px`;
 

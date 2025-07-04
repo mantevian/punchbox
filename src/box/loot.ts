@@ -82,7 +82,8 @@ export function apply(loot: Loot, box: Box) {
                 laneNumber: parseInt(box.getLane().getAttribute("n")!),
                 health: 1,
                 pos: box.pos,
-                type: "mini"
+                type: "mini",
+                speed: 1.5
             });
             break;
     }
