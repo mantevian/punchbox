@@ -1,13 +1,26 @@
-import { game } from ".";
+import { bus, game } from ".";
 import type Box from "./box/box";
 
 export default class Lane extends HTMLElement {
     speed = 1.5;
+    attacking = false;
 
     connectedCallback() {
         this.style.animationDuration = `${13 / this.speed}s`;
 
-        this.addEventListener("click", () => {
+        this.addEventListener("mouseover", () => {
+            this.attacking = true;
+        });
+
+        document.addEventListener("mouseout", () => {
+            this.attacking = false;
+        });
+
+        bus.on("tick", () => {
+            if (!this.attacking) {
+                return;
+            }
+
             const player = game.getPlayer();
 
             if (player.hasAttribute("attacking")) {
@@ -22,18 +35,28 @@ export default class Lane extends HTMLElement {
         });
     }
 
-    attack() {
-        const next = this.getNextBox();
+    attack(): boolean {
+        const next = this.getClosestBox();
 
         if (!next) {
-            return;
+            return false;
+        }
+
+        if (next.pos < 30) {
+            return false;
         }
 
         next.addHealth(-1);
+        return true;
     }
 
-    getNextBox(): Box | null {
-        return this.firstChild as Box;
+    getBoxes(): Box[] {
+        const boxes = [...this.querySelectorAll("pb-box")] as Box[];
+        return boxes.sort((a, b) => b.pos - a.pos);
+    }
+
+    getClosestBox(): Box | null {
+        return this.getBoxes()[0];
     }
 
     addSpeed(amount: number) {

@@ -9,6 +9,9 @@ pb-box {
     background-repeat: no-repeat;
 
     position: absolute;
+
+    transform-origin: center;
+    scale: 0;
 }
 
 pb-box > div {
@@ -34,8 +37,8 @@ pb-box > div {
     background-image: url("/img/box/good.svg");
 }
 
-[type="bad"] {
-    background-image: url("/img/box/bad.svg");
+[type="explosive"] {
+    background-image: url("/img/box/explosive.svg");
 }
 
 [type="mini"] {

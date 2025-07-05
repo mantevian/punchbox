@@ -52,19 +52,39 @@ export default class Spawner extends HTMLElement {
         box.maxHealth = box.health;
         box.pos = options.pos;
         box.speed = options.speed;
-        lane.appendChild(box);
+        lane.prepend(box);
     }
 
     spawnDefault() {
         const type = spawnTypes.next()!;
 
+        let health = 2;
+
+        switch (type) {
+            case "explosive":
+                health = 2;
+                break;
+
+            case "good":
+                health = 4;
+                break;
+
+            case "money":
+                health = 3;
+                break;
+        }
+
         this.spawn({
             laneNumber: nextInt(0, 5),
             pos: 0,
-            health: nextInt(1, 4),
+            health,
             type,
             speed: 1
         });
+    }
+
+    getLanes(): Lane[] {
+        return [...this.querySelectorAll("pb-lane")] as Lane[];
     }
 }
 
@@ -72,4 +92,4 @@ const spawnTypes = new WeightedList<LootTableName>()
     .add("normal", 5)
     .add("money", 2)
     .add("good", 1)
-    .add("bad", 3);
+    .add("explosive", 3);

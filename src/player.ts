@@ -3,11 +3,18 @@ import type Lane from "./lane";
 
 export default class Player extends HTMLElement {
     speed = 500;
-    health = 20;
+    health = 10;
     money = 0;
 
     connectedCallback() {
         this.displayStats();
+
+        game.querySelector("button#upgrade-attack-speed")!.addEventListener("click", () => {
+            if (this.money >= 25) {
+                this.addMoney(-25);
+                this.addSpeed(-50);
+            }
+        });
     }
 
     attack() {
@@ -15,14 +22,16 @@ export default class Player extends HTMLElement {
 
         const lane = this.getLane();
 
-        const boxPos = lane.getNextBox()?.pos ?? 300;
+        const boxPos = lane.getClosestBox()?.pos ?? -100;
         const height = 700 - boxPos;
 
         const glove: HTMLDivElement = this.querySelector("div.glove")!;
         glove.style.height = `${height}px`;
 
         setTimeout(() => {
-            lane.attack();
+            if (!lane.attack()) {
+                game.addHealth(-1);
+            }
         }, 100);
 
         setTimeout(() => {

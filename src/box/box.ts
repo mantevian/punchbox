@@ -1,4 +1,4 @@
-import { bus } from "..";
+import { bus, game } from "..";
 import type { CustomEventCallback } from "../util/bus";
 import type Lane from "../lane";
 import { apply, lootTable, type LootTableName } from "./loot";
@@ -17,7 +17,19 @@ export default class Box extends HTMLElement {
 
             this.style.top = `${this.pos}px`;
 
+            if (this.pos > 700) {
+                this.style.scale = `${(730 - this.pos) / 30}`;
+            }
+
+            if (this.pos < 30) {
+                this.style.scale = `${this.pos / 30}`;
+            }
+
             if (this.pos > 730) {
+                if (this.getAttribute("type") as LootTableName != "explosive") {
+                    game.getPlayer().addHealth(-1);
+                }
+
                 this.remove();
             }
         });

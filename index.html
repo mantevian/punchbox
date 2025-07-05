@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <pb-game>
+    <pb-game style="display: none">
         <pb-scene name="menu">
             <h1>Punchbox</h1>
 
@@ -36,11 +36,6 @@
 
             <section id="stats">
                 <p>
-                    <span>health: </span>
-                    <span id="health"></span>
-                </p>
-
-                <p>
                     <span>money: </span>
                     <span id="money"></span>
                 </p>
@@ -48,8 +43,23 @@
                 <p>
                     <span>attack speed: </span>
                     <span id="attack-speed"></span>
+                    <button id="upgrade-attack-speed">upgrade</button>
                 </p>
+            </section>
 
+            <section id="factory">
+                <p>
+                    <span id="factory-health"></span>
+                </p>
+            </section>
+
+            <section id="player">
+                <p>
+                    <span id="health"></span>
+                </p>
+            </section>
+
+            <section id="debug">
                 <p>
                     <span>game time: </span>
                     <span id="game-time"></span>
