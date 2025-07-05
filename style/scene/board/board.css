@@ -1,3 +1,58 @@
 pb-scene[name="board"] {
-    background: #e0e0e0;
+    background-color: #8d98ed;
+    background-image: url("/img/bg/pattern.svg");
+    background-size: 100px;
+
+    animation: board-bg 30s linear infinite;
+}
+
+@keyframes board-bg {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100% 100%;
+    }
+}
+
+.explosion {
+    background-color: rgba(243, 126, 126, 0.288);
+    background-image: url("/img/explosion.svg");
+    background-size: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 100%;
+
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    scale: 0;
+
+    translate: -50% 0;
+    transform-origin: center;
+
+    transition: scale 1s ease, opacity 1s ease, background-size 1s ease;
+
+    pointer-events: none;
+}
+
+.coin {
+    background-image: url("/img/coin.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    scale: 0;
+
+    translate: -50% 0;
+    transform-origin: center;
+
+    transition: top 1s ease, left 1s ease, scale 0.3s ease;
+
+    pointer-events: none;
 }

@@ -29,7 +29,28 @@ pb-player > div.glove {
     width: 80px;
     height: 0;
 
-    background: blue;
+    background-image: url("/img/glove.svg");
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
 
-    transition: height 0.1s ease-out;
+    transition: height 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+pb-player > div.spring {
+    position: absolute;
+    transform: translateX(10px);
+    transform-origin: bottom;
+    bottom: 0;
+
+    display: block;
+    width: 80px;
+    height: 800px;
+
+    background-image: url("/img/spring.svg");
+    background-size: 100% 100%;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    transition: height 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), scale 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }

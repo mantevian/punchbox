@@ -28,6 +28,9 @@ export default class Player extends HTMLElement {
         const glove: HTMLDivElement = this.querySelector("div.glove")!;
         glove.style.height = `${height}px`;
 
+        const spring: HTMLDivElement = this.querySelector("div.spring")!;
+        spring.style.scale = `1 ${(height - 100) / 800}`;
+
         setTimeout(() => {
             if (!lane.attack()) {
                 game.addHealth(-1);
@@ -36,6 +39,7 @@ export default class Player extends HTMLElement {
 
         setTimeout(() => {
             glove.style.height = `0px`;
+            spring.style.scale = `1 0`;
         }, this.speed - 100);
 
         setTimeout(() => {

@@ -38,6 +38,7 @@ export const lootTable = {
 
 export function apply(loot: Loot, box: Box) {
     const player = game.getPlayer();
+    const lane = box.getLane();
 
     console.log(loot.type);
 
@@ -47,20 +48,53 @@ export function apply(loot: Loot, box: Box) {
             break;
 
         case "lane_speed_increase":
-            box.getLane().addSpeed(0.25);
+            lane.addSpeed(0.25);
             break;
 
         case "lane_speed_decrease":
-            box.getLane().addSpeed(-0.25);
+            lane.addSpeed(-0.25);
             break;
 
         case "coin":
-            player.addMoney(loot.amount());
+            const amount = loot.amount();
+            player.addMoney(amount);
+
+            for (let i = 0; i < amount; i++) {
+                const coin = document.createElement("div");
+                coin.classList.add("coin");
+                coin.style.top = `${box.pos}px`;
+                coin.style.left = `${lane.getNumber() * 125 + 50}px`;
+                game.getSpawner().appendChild(coin);
+
+                requestAnimationFrame(() => {
+                    coin.style.scale = `1`;
+                });
+
+                if (amount > 1) {
+                    setTimeout(() => {
+                        coin.style.top = `${box.pos + nextInt(-100, 100)}px`;
+                        coin.style.left = `${lane.getNumber() * 125 + 50 + nextInt(-100, 100)}px`;
+                    }, 100);
+                }
+
+                setTimeout(() => {
+                    coin.style.top = `50%`;
+                    coin.style.left = `100%`;
+                }, 400);
+
+                setTimeout(() => {
+                    coin.style.scale = `0`;
+                }, 1200);
+
+                setTimeout(() => {
+                    coin.remove();
+                }, 2000);
+            }
             break;
 
         case "spawn_new_box":
             game.getSpawner().spawn({
-                laneNumber: parseInt(box.getLane().getAttribute("n")!),
+                laneNumber: lane.getNumber(),
                 health: 1,
                 pos: box.pos,
                 type: "mini",
@@ -69,9 +103,25 @@ export function apply(loot: Loot, box: Box) {
             break;
 
         case "explode":
-            box.remove();
             player.addHealth(-1);
-            game.getSpawner().getLanes().forEach(lane => lane.getBoxes().forEach(box => box.addHealth(-1)));
+            game.getSpawner().getLanes().forEach(lane => lane.getBoxes().filter(box => box.isDead == -1).forEach(box => box.addHealth(-1)));
+
+            const explosion = document.createElement("div");
+            explosion.classList.add("explosion");
+            explosion.style.top = `${box.pos}px`;
+            explosion.style.left = `${lane.getNumber() * 120 + 50}px`;
+            explosion.style.rotate = `${Math.random() * Math.PI * 2}rad`;
+            game.getSpawner().appendChild(explosion);
+
+            requestAnimationFrame(() => {
+                explosion.style.scale = `20`;
+                explosion.style.backgroundSize = `4%`;
+                explosion.style.opacity = `0`;
+            });
+
+            setTimeout(() => {
+                explosion.remove();
+            }, 1000);
             break;
     }
 }

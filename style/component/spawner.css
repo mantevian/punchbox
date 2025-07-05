@@ -9,5 +9,7 @@ pb-spawner {
     width: 600px;
     height: 800px;
     padding-bottom: 20px;
-    gap: 10px;
+    gap: 25px;
+
+    filter: drop-shadow(0 0 10px #202422);
 }

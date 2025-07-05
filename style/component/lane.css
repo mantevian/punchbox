@@ -3,15 +3,19 @@ pb-lane {
     flex-direction: column;
     align-items: center;
 
-    background-image: linear-gradient(to bottom, #3b3b3b 0px, #3b3b3b 1px, #4d4d4d 10px);
-    background-size: 100% 40px;
+    background-color: #312f35;
+    background-image: linear-gradient(to bottom, transparent, transparent 35px, #46424d 35px);
+    background-size: 80% 40px;
     background-repeat: repeat-y;
+    background-position: center;
 
     animation: conveyor-belt 13s infinite linear;
 
     border-radius: 0 0 8px 8px;
 
     box-shadow: inset 0px 0px 20px 4px rgba(0, 0, 0, 0.75);
+
+    transition: filter 0.1s ease;
 }
 
 @keyframes conveyor-belt {
