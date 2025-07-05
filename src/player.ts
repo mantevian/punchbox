@@ -2,17 +2,17 @@ import { game } from ".";
 import type Lane from "./lane";
 
 export default class Player extends HTMLElement {
-    speed = 500;
-    health = 10;
+    speed = 750;
+    health = 20;
     money = 0;
 
     connectedCallback() {
         this.displayStats();
 
         game.querySelector("button#upgrade-attack-speed")!.addEventListener("click", () => {
-            if (this.money >= 25) {
-                this.addMoney(-25);
-                this.addSpeed(-50);
+            if (this.money >= 10) {
+                this.addMoney(-10);
+                this.multiplySpeed(0.95);
             }
         });
     }
@@ -23,7 +23,7 @@ export default class Player extends HTMLElement {
         const lane = this.getLane();
 
         const boxPos = lane.getClosestBox()?.pos ?? -100;
-        const height = 700 - boxPos;
+        const height = 680 - boxPos;
 
         const glove: HTMLDivElement = this.querySelector("div.glove")!;
         glove.style.height = `${height}px`;
@@ -40,7 +40,7 @@ export default class Player extends HTMLElement {
         setTimeout(() => {
             glove.style.height = `0px`;
             spring.style.scale = `1 0`;
-        }, this.speed - 100);
+        }, Math.min(this.speed - 100, 400));
 
         setTimeout(() => {
             this.removeAttribute("attacking");
@@ -63,6 +63,11 @@ export default class Player extends HTMLElement {
 
     addSpeed(amount: number) {
         this.speed = Math.max(this.speed + amount, 200);
+        this.displayStats();
+    }
+
+    multiplySpeed(factor: number) {
+        this.speed = Math.max(Math.floor(this.speed * factor), 200);
         this.displayStats();
     }
 

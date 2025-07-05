@@ -1,13 +1,26 @@
-import { game } from ".";
+import { bus, game } from ".";
 import type Box from "./box/box";
 
 export default class Lane extends HTMLElement {
     speed = 1.5;
+    attacking = false;
 
     connectedCallback() {
         this.style.animationDuration = `${13 / this.speed}s`;
 
-        this.addEventListener("click", () => {
+        this.addEventListener("mousedown", () => {
+            this.attacking = true;
+        });
+
+        document.addEventListener("mouseup", () => {
+            this.attacking = false;
+        });
+
+        bus.on("tick", () => {
+            if (!this.attacking) {
+                return;
+            }
+
             const player = game.getPlayer();
 
             if (player.hasAttribute("attacking")) {
@@ -53,5 +66,10 @@ export default class Lane extends HTMLElement {
 
     getNumber(): number {
         return parseInt(this.getAttribute("n")!);
+    }
+
+    canSpawn(): boolean {
+        const hasCloseBoxes = this.getBoxes().find(box => box.pos < 200);
+        return !hasCloseBoxes;
     }
 }

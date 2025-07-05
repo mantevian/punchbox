@@ -1,7 +1,7 @@
 import { bus, game } from "..";
 import type { CustomEventCallback } from "../util/bus";
 import type Lane from "../lane";
-import { apply, lootTable, type LootTableName } from "./loot";
+import { apply, lootTable } from "./loot";
 
 export default class Box extends HTMLElement {
     pos = 0;
@@ -14,7 +14,7 @@ export default class Box extends HTMLElement {
     private tickCallback: CustomEventCallback<"tick"> | null = null;
 
     connectedCallback() {
-        const type = this.getAttribute("type") as LootTableName;
+        const type = this.getAttribute("type") as BoxType;
 
         this.tickCallback = bus.on("tick", () => {
             this.pos += this.getLane().speed * this.speed;
@@ -32,7 +32,7 @@ export default class Box extends HTMLElement {
             }
 
             if (this.pos > 730) {
-                if (type != "explosive") {
+                if (type != "skull" && type != "explosive") {
                     game.getPlayer().addHealth(-1);
                 }
 
@@ -84,7 +84,7 @@ export default class Box extends HTMLElement {
     onDeath() {
         this.isDead = 10;
 
-        let type = this.getAttribute("type") as LootTableName;
+        let type = this.getAttribute("type") as BoxType;
 
         const loot = lootTable[type].next();
 
@@ -93,3 +93,33 @@ export default class Box extends HTMLElement {
         }
     }
 }
+
+export type BoxType = "normal" | "good" | "explosive" | "money" | "mini" | "skull" | "mystery";
+
+export type BoxStats = {
+    health: number;
+};
+
+export const boxTypes: { [key in BoxType]: BoxStats } = {
+    normal: {
+        health: 1,
+    },
+    good: {
+        health: 3,
+    },
+    explosive: {
+        health: 2,
+    },
+    money: {
+        health: 2,
+    },
+    mini: {
+        health: 1,
+    },
+    skull: {
+        health: 1,
+    },
+    mystery: {
+        health: 1,
+    },
+};

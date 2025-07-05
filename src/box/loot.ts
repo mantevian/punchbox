@@ -2,24 +2,23 @@ import { game } from "..";
 import { nextInt } from "../util/random";
 import WeightedList from "../util/weighted_list";
 import type Box from "./box";
-
-export type LootTableName = "normal" | "good" | "explosive" | "money" | "mini";
+import { spawnTypesUniform } from "./spawner";
 
 export type Loot =
     { type: "player_health_increase"; } |
-    { type: "spawn_new_box"; } |
+    { type: "spawn_mini_box"; } |
+    { type: "spawn_random_box"; } |
     { type: "lane_speed_increase"; } |
     { type: "lane_speed_decrease"; } |
     { type: "explode"; } |
-    { type: "coin"; amount: () => number; };
+    { type: "coin"; amount: () => number; } |
+    { type: "damage_player"; amount: () => number; };
 
 export const lootTable = {
     normal: new WeightedList<Loot>()
         .add({ type: "lane_speed_increase" }, 1)
-        // .add({ type: "lane_speed_decrease" }, 1)
-        .add({ type: "spawn_new_box" }, 1)
-        .add({ type: "coin", amount: () => 1 }, 2)
-        .add({ type: "coin", amount: () => 2 }, 1),
+        .add({ type: "spawn_mini_box" }, 1)
+        .add({ type: "coin", amount: () => 1 }, 1),
 
     good: new WeightedList<Loot>()
         .add({ type: "player_health_increase" }, 1)
@@ -30,10 +29,16 @@ export const lootTable = {
         .add({ type: "explode" }, 1),
 
     money: new WeightedList<Loot>()
-        .add({ type: "coin", amount: () => nextInt(2, 5) }, 1),
+        .add({ type: "coin", amount: () => nextInt(2, 4) }, 1),
 
     mini: new WeightedList<Loot>()
-        .add({ type: "coin", amount: () => 1 }, 1)
+        .add({ type: "coin", amount: () => 1 }, 1),
+
+    skull: new WeightedList<Loot>()
+        .add({ type: "damage_player", amount: () => 1 }, 1),
+
+    mystery: new WeightedList<Loot>()
+        .add({ type: "spawn_random_box" }, 1)
 };
 
 export function apply(loot: Loot, box: Box) {
@@ -92,18 +97,25 @@ export function apply(loot: Loot, box: Box) {
             }
             break;
 
-        case "spawn_new_box":
+        case "spawn_mini_box":
             game.getSpawner().spawn({
                 laneNumber: lane.getNumber(),
                 health: 1,
                 pos: box.pos,
                 type: "mini",
-                speed: 1.5
+                speed: 1
+            });
+            break;
+
+        case "spawn_random_box":
+            game.getSpawner().spawnFromTypes({
+                types: spawnTypesUniform,
+                laneNumber: lane.getNumber(),
+                pos: box.pos
             });
             break;
 
         case "explode":
-            player.addHealth(-1);
             game.getSpawner().getLanes().forEach(lane => lane.getBoxes().filter(box => box.isDead == -1).forEach(box => box.addHealth(-1)));
 
             const explosion = document.createElement("div");
@@ -122,6 +134,10 @@ export function apply(loot: Loot, box: Box) {
             setTimeout(() => {
                 explosion.remove();
             }, 1000);
+            break;
+
+        case "damage_player":
+            player.addHealth(-loot.amount());
             break;
     }
 }
