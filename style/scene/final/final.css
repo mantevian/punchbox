@@ -1,0 +1,34 @@
+pb-scene[name="final"] {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    align-items: center;
+    justify-content: center;
+
+    padding-bottom: 10%;
+}
+
+#final-stats {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 60%;
+
+    font-size: 24px;
+}
+
+#final-image {
+    width: 80%;
+    height: 30%;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+pb-scene[name="final"][status="win"] #final-image {
+    background-image: url("/victory.svg");
+}
+
+pb-scene[name="final"][status="lose"] #final-image {
+    background-image: url("/defeat.svg");
+}

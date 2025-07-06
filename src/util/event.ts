@@ -15,5 +15,8 @@ declare global {
         "start_game": void;
         "how_to_play": void;
         "menu": void;
+        "win": void;
+        "lose": void;
+        "refresh": void;
     }
 }

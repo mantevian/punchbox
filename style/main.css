@@ -2,6 +2,7 @@
     box-sizing: border-box;
     user-select: none;
     font-family: sans-serif;
+    cursor: url("/cursor.png"), auto !important;
 }
 
 :root {
@@ -16,6 +17,8 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+
+
 }
 
 button {
@@ -32,12 +35,10 @@ button {
 
 button:hover {
     filter: brightness(1.1) saturate(0.5);
-    cursor: pointer;
 }
 
 button:disabled {
     filter: grayscale(0.5);
-    cursor: not-allowed;
 }
 
 span.money {

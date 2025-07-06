@@ -1,4 +1,5 @@
 import { game } from "..";
+import GameAudio from "../util/audio";
 import { nextInt } from "../util/random";
 import WeightedList from "../util/weighted_list";
 import type Box from "./box";
@@ -17,11 +18,11 @@ export type Loot =
 export const lootTable = {
     normal: new WeightedList<Loot>()
         .add({ type: "lane_speed_increase" }, 1)
-        .add({ type: "spawn_mini_box" }, 1)
-        .add({ type: "coin", amount: () => 1 }, 1),
+        .add({ type: "spawn_mini_box" }, 2)
+        .add({ type: "coin", amount: () => 1 }, 3),
 
     good: new WeightedList<Loot>()
-        .add({ type: "player_health_increase", amount: () => nextInt(1, 3) }, 1)
+        .add({ type: "player_health_increase", amount: () => nextInt(1, 4) }, 1)
         .add({ type: "lane_speed_decrease" }, 1)
         .add({ type: "coin", amount: () => 1 }, 1),
 
@@ -29,7 +30,7 @@ export const lootTable = {
         .add({ type: "explode" }, 1),
 
     money: new WeightedList<Loot>()
-        .add({ type: "coin", amount: () => nextInt(2, 4) }, 1),
+        .add({ type: "coin", amount: () => nextInt(1, 5) }, 1),
 
     mini: new WeightedList<Loot>()
         .add({ type: "coin", amount: () => 1 }, 1),
@@ -169,6 +170,8 @@ export function apply(loot: Loot, box: Box) {
             setTimeout(() => {
                 explosion.remove();
             }, 1000);
+
+            GameAudio.explosion();
             break;
 
         case "damage_player":

@@ -1,11 +1,15 @@
-import { game } from ".";
+import { bus, game } from ".";
 import type Lane from "./lane";
+import GameAudio from "./util/audio";
 
 export default class Player extends HTMLElement {
     speed = 750;
     health = 20;
     money = 0;
     upgradeCost = 10;
+
+    boxesDestroyed = 0;
+    totalMoneyCollected = 0;
 
     healthAnimation?: number;
     moneyAnimation?: number;
@@ -23,6 +27,8 @@ export default class Player extends HTMLElement {
     }
 
     attack() {
+        GameAudio.hit();
+
         this.setAttribute("attacking", "");
 
         const lane = this.getLane();
@@ -57,10 +63,16 @@ export default class Player extends HTMLElement {
     }
 
     addHealth(amount: number) {
-        this.health += amount;
+        this.health = Math.max(this.health + amount, 0);
+
+        if (amount > 0) {
+            GameAudio.heal();
+        } else {
+            GameAudio.deadly();
+        }
 
         if (this.health <= 0) {
-            console.log("ded");
+            bus.emit("lose", void {});
         }
 
         const healthDisplay = game.querySelector<HTMLElement>("#health")!;
@@ -111,12 +123,22 @@ export default class Player extends HTMLElement {
         this.moneyAnimation = setTimeout(() => {
             moneyDisplay.style.animation = "";
         }, 500);
+
+        if (amount > 0) {
+            this.totalMoneyCollected += amount;
+        }
+
+        GameAudio.coin();
     }
 
     displayStats() {
         game.querySelector("#money")!.innerHTML = `${this.money}`;
         game.querySelector("#attack-speed")!.innerHTML = `${this.speed}`;
         game.querySelector("#health")!.innerHTML = `${this.health}`;
-        game.querySelector("#upgrade-attack-speed > span")!.innerHTML = `${this.upgradeCost}`;
+
+        const upgradeCostDisplay = game.querySelector("#upgrade-attack-speed > span");
+        if (upgradeCostDisplay) {
+            upgradeCostDisplay.innerHTML = `${this.upgradeCost}`;
+        }
     }
 }

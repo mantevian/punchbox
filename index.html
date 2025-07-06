@@ -150,6 +150,28 @@
                 <pb-event on="click" name="menu"></pb-event>
             </button>
         </pb-scene>
+
+        <pb-scene name="final">
+            <div id="final-image"></div>
+
+            <h1></h1>
+
+            <div id="final-stats">
+                <p>Time played</p>
+                <p id="time-played"></p>
+
+                <p>Boxes destroyed</p>
+                <p id="boxes-destroyed"></p>
+
+                <p>Total money collected</p>
+                <p id="total-money-collected"></p>
+            </div>
+
+            <button>
+                <span>Main menu</span>
+                <pb-event on="click" name="refresh"></pb-event>
+            </button>
+        </pb-scene>
     </pb-game>
 </body>
 

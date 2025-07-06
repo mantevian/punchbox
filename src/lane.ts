@@ -55,6 +55,7 @@ export default class Lane extends HTMLElement {
         }
 
         next.addHealth(-1);
+
         return true;
     }
 
@@ -67,8 +68,8 @@ export default class Lane extends HTMLElement {
         return this.getBoxes()[0];
     }
 
-    addSpeed(amount: number) {
-        this.speed = Math.max(this.speed + amount, 1);
+    addSpeed(amount: number, bypass?: boolean) {
+        this.speed = Math.max(this.speed + amount, bypass ? 0 : 1);
         this.style.animationDuration = `${13 / this.speed}s`;
     }
 

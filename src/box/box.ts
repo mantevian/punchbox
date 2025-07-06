@@ -86,6 +86,8 @@ export default class Box extends HTMLElement {
         if (loot) {
             apply(loot, this);
         }
+
+        game.getPlayer().boxesDestroyed += 1;
     }
 }
 

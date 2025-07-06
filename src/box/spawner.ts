@@ -28,8 +28,8 @@ export default class Spawner extends HTMLElement {
                 console.log("[SPAWN] default chance");
             }
 
-            if (time % (60 * 4) == 0) {
-                this.interval = Math.max(this.interval - 1, 30);
+            if (time % (60 * 5) == 0) {
+                this.interval = Math.max(this.interval - 1, 60);
                 console.log(`new interval: ${this.interval}`);
             }
 
@@ -121,8 +121,8 @@ export default class Spawner extends HTMLElement {
 
 export const spawnTypes = new WeightedList<BoxType>()
     .add("normal", 10)
-    .add("money", 3)
-    .add("good", 2)
+    .add("money", 4)
+    .add("good", 4)
     .add("explosive", 3)
     .add("skull", 4)
     .add("mystery", 1);
