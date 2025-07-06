@@ -88,7 +88,14 @@ export default class Player extends HTMLElement {
     }
 
     multiplySpeed(factor: number) {
-        this.speed = Math.max(Math.floor(this.speed * factor), 200);
+        this.speed = Math.max(Math.floor(this.speed * factor), 1);
+
+        if (this.speed <= 200) {
+            const button = game.querySelector<HTMLButtonElement>("button#upgrade-attack-speed")!;
+            button.disabled = true;
+            button.innerHTML = `MAX`;
+        }
+
         this.displayStats();
     }
 

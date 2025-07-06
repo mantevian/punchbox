@@ -10,7 +10,6 @@ export default class Box extends HTMLElement {
     speed = 1;
     isDead = -1;
     healthBar: HTMLDivElement | null = null;
-    sprite: HTMLImageElement | null = null;
     private tickCallback: CustomEventCallback<"tick"> | null = null;
 
     connectedCallback() {
@@ -51,10 +50,6 @@ export default class Box extends HTMLElement {
 
         this.healthBar = document.createElement("div");
         this.appendChild(this.healthBar);
-
-        this.sprite = document.createElement("img");
-        this.sprite.src = `/img/box/${type}.svg`;
-        this.appendChild(this.sprite);
     }
 
     disconnectedCallback() {
@@ -70,14 +65,14 @@ export default class Box extends HTMLElement {
 
         this.healthBar!.style.backgroundSize = `${(this.health / this.maxHealth) * 100}% 100%, 100% 100%`;
 
-        this.sprite!.style.animation = "box-hit 0.5s ease";
-
-        setTimeout(() => {
-            this.sprite!.style.animation = "";
-        }, 500);
-
         if (this.health <= 0) {
             this.onDeath();
+        } else {
+            this.style.animation = "box-hit 0.5s ease";
+
+            setTimeout(() => {
+                this.style.animation = "";
+            }, 500);
         }
     }
 

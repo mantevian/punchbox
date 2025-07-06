@@ -12,6 +12,10 @@ pb-box {
     user-select: none;
 
     transition: scale 0.05s ease;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 pb-box > div {
@@ -30,17 +34,9 @@ pb-box > div {
     background-position: left center, left center;
     background-repeat: no-repeat, no-repeat;
 
-    z-index: 1;
-}
-
-pb-box > img {
-    display: block;
-    width: 100%;
-    height: 100%;
-
-    transform-origin: center;
-
     filter: drop-shadow(0 -10px 10px #7588756e);
+
+    z-index: 1;
 }
 
 @keyframes box-hit {
@@ -54,4 +50,37 @@ pb-box > img {
         scale: 1.1;
         translate: 0 -5%;
     }
+}
+
+pb-box[type="normal"] {
+    background-image: url("/img/box/normal.svg");
+}
+
+pb-box[type="good"] {
+    background-image: url("/img/box/good.svg");
+}
+
+
+pb-box[type="money"] {
+    background-image: url("/img/box/money.svg");
+}
+
+
+pb-box[type="explosive"] {
+    background-image: url("/img/box/explosive.svg");
+}
+
+
+pb-box[type="skull"] {
+    background-image: url("/img/box/skull.svg");
+}
+
+
+pb-box[type="mystery"] {
+    background-image: url("/img/box/mystery.svg");
+}
+
+
+pb-box[type="mini"] {
+    background-image: url("/img/box/mini.svg");
 }

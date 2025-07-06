@@ -16,6 +16,14 @@ export default class Lane extends HTMLElement {
             this.attacking = false;
         });
 
+        this.addEventListener("touchstart", () => {
+            this.attacking = true;
+        });
+
+        document.addEventListener("touchend", () => {
+            this.attacking = false;
+        });
+
         bus.on("tick", () => {
             if (!this.attacking) {
                 return;

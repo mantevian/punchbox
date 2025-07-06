@@ -13,10 +13,14 @@ pb-player > div.box {
     position: absolute;
 
     display: block;
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
+    translate: -40px -20px;
 
-    background: red;
+    background-image: url("/img/playerbox.svg");
+    background-size: 100% auto;
+    background-position: top center;
+    background-repeat: no-repeat;
 
     z-index: 1;
 }
@@ -35,6 +39,8 @@ pb-player > div.glove {
     background-repeat: no-repeat;
 
     transition: height 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    z-index: 3;
 }
 
 pb-player > div.spring {
@@ -53,4 +59,6 @@ pb-player > div.spring {
     background-repeat: no-repeat;
 
     transition: height 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), scale 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    z-index: 2;
 }
