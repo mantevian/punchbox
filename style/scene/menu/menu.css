@@ -4,8 +4,44 @@ pb-scene[name="menu"] {
     justify-content: center;
     flex-direction: column;
     gap: 24px;
+
+    padding-bottom: 5%;
 }
 
-h1 {
-    font-size: 64px;
+.logo {
+    width: 70%;
+    height: 25%;
+
+    background-image: url("/logo.svg");
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+#credits {
+    margin-top: 64px;
+    font-size: 24px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#credits > p {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 0.5ch;
+}
+
+.github {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-image: url("/github.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }

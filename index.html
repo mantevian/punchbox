@@ -7,17 +7,30 @@
     <title>Punchbox</title>
 
     <script type="module" src="./src/index.ts"></script>
+
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg">
 </head>
 
 <body>
     <pb-game style="display: none">
         <pb-scene name="menu">
-            <h1>Punchbox</h1>
+            <div class="logo"></div>
 
             <button>
-                <span>Play</span>
+                <span>Start</span>
                 <pb-event on="click" name="start_game"></pb-event>
             </button>
+
+            <button>
+                <span>How to play</span>
+                <pb-event on="click" name="how_to_play"></pb-event>
+            </button>
+
+            <div id="credits">
+                <p>created by <a href="https://mantevian.xyz">mantevian</a></p>
+                <p>for <a href="https://itch.io/jam/mini-jam-188-mystery">mini game jam 188</a></p>
+                <p><a href="https://github.com/mantevian/punchbox" class="github"></a></p>
+            </div>
         </pb-scene>
 
         <pb-scene name="board">
@@ -37,7 +50,7 @@
 
             <section id="stats">
                 <p>
-                    <span id="money"></span>
+                    <span id="money" class="money"></span>
                 </p>
 
                 <p id="upgrade-attack-speed-p">
@@ -70,6 +83,72 @@
                     <span id="big-wave"></span>
                 </p>
             </section>
+        </pb-scene>
+
+        <pb-scene name="how_to_play">
+            <h1>How to play</h1>
+
+            <section id="how-to-play">
+                <div>
+                    <p>Use the boxing glove in your box to destroy the box-producing factory.</p>
+                    <p>Click a conveyor belt to attack in that lane. You can hold for continuous attacking.</p>
+                </div>
+
+                <div>
+                    <p>You will encounter various kinds of boxes, each with a special effect when destroyed.</p>
+                    <p>Letting a box through the conveyor will take 1 HP from you, except for explosive and deadly
+                        boxes, they can pass safely.</p>
+                </div>
+
+                <div id="box-info">
+                    <div>
+                        <img src="/img/box/normal.svg">
+                        <p>simple</p>
+                        <p>can spawn a mini box</p>
+                    </div>
+
+                    <div>
+                        <img src="/img/box/mini.svg">
+                        <p>mini</p>
+                        <p>drops 1 coin</p>
+                    </div>
+
+                    <div>
+                        <img src="/img/box/good.svg">
+                        <p>goodie</p>
+                        <p>always drops goodies</p>
+                    </div>
+
+                    <div>
+                        <img src="/img/box/money.svg">
+                        <p>money</p>
+                        <p>always drops money</p>
+                    </div>
+
+                    <div>
+                        <img src="/img/box/explosive.svg">
+                        <p>explosive</p>
+                        <p>does 1 damage to all boxes</p>
+                    </div>
+
+                    <div>
+                        <img src="/img/box/skull.svg">
+                        <p>deadly</p>
+                        <p>does 1 damage to you</p>
+                    </div>
+
+                    <div>
+                        <img src="/img/box/mystery.svg">
+                        <p>mystery</p>
+                        <p>transforms into a random box</p>
+                    </div>
+                </div>
+            </section>
+
+            <button>
+                <span>Back</span>
+                <pb-event on="click" name="menu"></pb-event>
+            </button>
         </pb-scene>
     </pb-game>
 </body>

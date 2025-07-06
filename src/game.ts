@@ -30,6 +30,14 @@ export default class Game extends HTMLElement {
             this.time = -120;
         });
 
+        bus.on("how_to_play", () => {
+            bus.emit("change_scene", "how_to_play");
+        });
+
+        bus.on("menu", () => {
+            bus.emit("change_scene", "menu");
+        });
+
         this.resize();
 
         this.tick();
@@ -50,7 +58,7 @@ export default class Game extends HTMLElement {
 
         this.querySelector("#game-time")!.innerHTML = `${this.time}`;
 
-        requestAnimationFrame(() => this.tick());
+        setTimeout(() => this.tick(), 1000 / 60);
     }
 
     resize() {
@@ -80,6 +88,7 @@ export default class Game extends HTMLElement {
         const factoryHealth = this.querySelector("#factory-health")! as HTMLSpanElement;
 
         factoryHealth.innerHTML = `${this.health}`;
+
         factoryHealth.style.animation = "text-hit 0.5s ease";
 
         clearTimeout(this.healthAnimation);

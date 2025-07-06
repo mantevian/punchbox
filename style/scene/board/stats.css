@@ -5,13 +5,11 @@
     right: 16px;
     translate: 0 -50%;
 
-    width: 170px;
+    width: 150px;
 
     display: flex;
     flex-direction: column;
-    gap: 16px;
-
-
+    gap: 48px;
 }
 
 #money {
@@ -22,22 +20,11 @@
     font-size: 32px;
 }
 
-#money::before {
-    display: block;
-    width: 32px;
-    height: 32px;
-
-    background-image: url("/img/coin.svg");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    content: '';
-}
-
 #upgrade-attack-speed-p {
     display: flex;
     gap: 8px;
+    flex-direction: column;
+    text-align: end;
 }
 
 #upgrade-attack-speed {

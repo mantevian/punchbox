@@ -73,8 +73,8 @@ export function apply(loot: Loot, box: Box) {
                 }
 
                 setTimeout(() => {
-                    heart.style.top = `calc(50% - 10px)`;
-                    heart.style.left = `calc(-50px)`;
+                    heart.style.top = `calc(50% - 25px)`;
+                    heart.style.left = `calc(-85px)`;
                 }, 400);
 
                 setTimeout(() => {
@@ -118,8 +118,8 @@ export function apply(loot: Loot, box: Box) {
                 }
 
                 setTimeout(() => {
-                    coin.style.top = `calc(50% - 20px)`;
-                    coin.style.left = `calc(100% + 50px)`;
+                    coin.style.top = `calc(50% - 100px)`;
+                    coin.style.left = `calc(100% + 100px)`;
                 }, 400);
 
                 setTimeout(() => {

@@ -13,5 +13,7 @@ declare global {
         "tick": number;
         "change_scene": string;
         "start_game": void;
+        "how_to_play": void;
+        "menu": void;
     }
 }
