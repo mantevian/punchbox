@@ -105,7 +105,7 @@ export const boxTypes: { [key in BoxType]: BoxStats } = {
         health: 1,
     },
     good: {
-        health: 3,
+        health: 2,
     },
     explosive: {
         health: 2,

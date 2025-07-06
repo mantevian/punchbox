@@ -47,7 +47,7 @@ export default class Spawner extends HTMLElement {
                 }
             }
 
-            game.querySelector("span#big-wave")!.innerHTML = `${this.bigWave}`;
+            game.querySelector("#big-wave")!.innerHTML = `${this.bigWave}`;
         });
     }
 
@@ -66,10 +66,18 @@ export default class Spawner extends HTMLElement {
         let laneNumber: number;
         let attempts = 20;
 
-        do {
+        while (true) {
+            if (attempts <= 0) {
+                return;
+            }
+
             laneNumber = nextInt(0, 5);
+            if (this.getLanes()[laneNumber].canSpawn()) {
+                break;
+            }
+
             attempts--;
-        } while (attempts > 0 && !this.getLanes()[laneNumber].canSpawn());
+        }
 
         this.spawnFromTypes({
             types: spawnTypes,

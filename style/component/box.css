@@ -29,6 +29,8 @@ pb-box > div {
     background-size: 100% 100%, 100% 100%;
     background-position: left center, left center;
     background-repeat: no-repeat, no-repeat;
+
+    z-index: 1;
 }
 
 pb-box > img {
@@ -37,21 +39,8 @@ pb-box > img {
     height: 100%;
 
     transform-origin: center;
-}
 
-pb-box::before {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    translate: -50% -50%;
-
-    width: 50%;
-    height: 50%;
-
-    box-shadow: 0 -15px 50px #d4cece9d;
-
-    content: '';
-    z-index: -1;
+    filter: drop-shadow(0 -10px 10px #7588756e);
 }
 
 @keyframes box-hit {

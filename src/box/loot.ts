@@ -5,7 +5,7 @@ import type Box from "./box";
 import { spawnTypesUniform } from "./spawner";
 
 export type Loot =
-    { type: "player_health_increase"; } |
+    { type: "player_health_increase"; amount: () => number; } |
     { type: "spawn_mini_box"; } |
     { type: "spawn_random_box"; } |
     { type: "lane_speed_increase"; } |
@@ -21,7 +21,7 @@ export const lootTable = {
         .add({ type: "coin", amount: () => 1 }, 1),
 
     good: new WeightedList<Loot>()
-        .add({ type: "player_health_increase" }, 1)
+        .add({ type: "player_health_increase", amount: () => nextInt(1, 3) }, 1)
         .add({ type: "lane_speed_decrease" }, 1)
         .add({ type: "coin", amount: () => 1 }, 1),
 
@@ -45,11 +45,46 @@ export function apply(loot: Loot, box: Box) {
     const player = game.getPlayer();
     const lane = box.getLane();
 
+    let amount: number;
+
     console.log(loot.type);
 
     switch (loot.type) {
         case "player_health_increase":
-            player.addHealth(1);
+            amount = loot.amount();
+            player.addHealth(amount);
+
+            for (let i = 0; i < amount; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.top = `${box.pos}px`;
+                heart.style.left = `${lane.getNumber() * 125 + 50}px`;
+                game.getSpawner().appendChild(heart);
+
+                requestAnimationFrame(() => {
+                    heart.style.scale = `1`;
+                });
+
+                if (amount > 1) {
+                    setTimeout(() => {
+                        heart.style.top = `${box.pos + nextInt(-100, 100)}px`;
+                        heart.style.left = `${lane.getNumber() * 125 + 50 + nextInt(-100, 100)}px`;
+                    }, 100);
+                }
+
+                setTimeout(() => {
+                    heart.style.top = `calc(50% - 10px)`;
+                    heart.style.left = `calc(-50px)`;
+                }, 400);
+
+                setTimeout(() => {
+                    heart.style.scale = `0`;
+                }, 1200);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
             break;
 
         case "lane_speed_increase":
@@ -61,7 +96,7 @@ export function apply(loot: Loot, box: Box) {
             break;
 
         case "coin":
-            const amount = loot.amount();
+            amount = loot.amount();
             player.addMoney(amount);
 
             for (let i = 0; i < amount; i++) {
@@ -83,8 +118,8 @@ export function apply(loot: Loot, box: Box) {
                 }
 
                 setTimeout(() => {
-                    coin.style.top = `50%`;
-                    coin.style.left = `100%`;
+                    coin.style.top = `calc(50% - 20px)`;
+                    coin.style.left = `calc(100% + 50px)`;
                 }, 400);
 
                 setTimeout(() => {

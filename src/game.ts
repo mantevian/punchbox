@@ -6,6 +6,7 @@ export default class Game extends HTMLElement {
     keysPressed: { [key: string]: boolean; } = {};
     time = 0;
     health = 500;
+    healthAnimation?: number;
 
     connectedCallback() {
         requestAnimationFrame(() => this.init());
@@ -38,6 +39,8 @@ export default class Game extends HTMLElement {
         setTimeout(() => {
             this.style.display = "block";
         }, 500);
+
+        this.addHealth(0);
     }
 
     tick() {
@@ -45,7 +48,7 @@ export default class Game extends HTMLElement {
 
         this.time++;
 
-        this.querySelector("span#game-time")!.innerHTML = `${this.time}`;
+        this.querySelector("#game-time")!.innerHTML = `${this.time}`;
 
         requestAnimationFrame(() => this.tick());
     }
@@ -74,7 +77,17 @@ export default class Game extends HTMLElement {
     addHealth(amount: number) {
         this.health += amount;
 
-        this.querySelector("#factory-health")!.innerHTML = `${this.health}`;
+        const factoryHealth = this.querySelector("#factory-health")! as HTMLSpanElement;
+
+        factoryHealth.innerHTML = `${this.health}`;
+        factoryHealth.style.animation = "text-hit 0.5s ease";
+
+        clearTimeout(this.healthAnimation);
+
+        this.healthAnimation = setTimeout(() => {
+            factoryHealth.style.animation = "";
+        }, 500);
+
         if (this.health <= 0) {
             console.log("win");
         }

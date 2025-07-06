@@ -2,7 +2,47 @@
     position: absolute;
 
     top: 50%;
-    right: 0;
-
+    right: 16px;
     translate: 0 -50%;
+
+    width: 170px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+
+}
+
+#money {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    font-size: 32px;
+}
+
+#money::before {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-image: url("/img/coin.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    content: '';
+}
+
+#upgrade-attack-speed-p {
+    display: flex;
+    gap: 8px;
+}
+
+#upgrade-attack-speed {
+    font-size: 24px;
+    padding-inline: 0;
+    display: block;
+    width: 100%;
 }

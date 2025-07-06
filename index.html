@@ -15,7 +15,7 @@
             <h1>Punchbox</h1>
 
             <button>
-                <span>play</span>
+                <span>Play</span>
                 <pb-event on="click" name="start_game"></pb-event>
             </button>
         </pb-scene>
@@ -37,30 +37,29 @@
 
             <section id="stats">
                 <p>
-                    <span>money: </span>
                     <span id="money"></span>
                 </p>
 
-                <p>
-                    <span>attack speed: </span>
-                    <span id="attack-speed"></span>
-                    <button id="upgrade-attack-speed">upgrade</button>
+                <p id="upgrade-attack-speed-p">
+                    <span>upgrade attack speed</span>
+                    <button id="upgrade-attack-speed"><span class="money"></span></button>
+                </p>
+
+                <p hidden>
+                    <span hidden>attack speed: </span>
+                    <span hidden id="attack-speed"></span>
                 </p>
             </section>
 
             <section id="factory">
-                <p>
-                    <span id="factory-health"></span>
-                </p>
+                <p class="health-display" id="factory-health"></p>
             </section>
 
             <section id="player">
-                <p>
-                    <span id="health"></span>
-                </p>
+                <p class="health-display" id="health"></p>
             </section>
 
-            <section id="debug">
+            <section id="debug" hidden>
                 <p>
                     <span>game time: </span>
                     <span id="game-time"></span>

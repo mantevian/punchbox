@@ -1,5 +1,5 @@
 pb-scene:not([enabled]) {
-    display: none;
+    display: none !important;
 }
 
 pb-scene {

@@ -39,7 +39,7 @@ pb-player > div.glove {
 
 pb-player > div.spring {
     position: absolute;
-    transform: translateX(10px);
+    transform: translateX(5px);
     transform-origin: bottom;
     bottom: 0;
 

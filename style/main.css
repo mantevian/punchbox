@@ -3,6 +3,10 @@
     user-select: none;
 }
 
+:root {
+    --accent: rgb(139, 247, 255);
+}
+
 body {
     margin: 0;
 
@@ -13,7 +17,46 @@ body {
     overflow: hidden;
 }
 
-#game {
-    width: 100vmin;
-    height: 100vmin;
+button {
+    padding: 12px 24px;
+    font-size: 24px;
+
+    border: 2px solid black;
+    border-radius: 6px;
+
+    background: var(--accent);
+
+    transition: filter 0.1s ease;
+}
+
+button:hover {
+    filter: brightness(1.3);
+}
+
+button:disabled {
+    filter: grayscale(0.5);
+}
+
+span.money {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+span.money::after {
+    display: block;
+    width: 32px;
+    height: 32px;
+
+    background-image: url("/img/coin.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    content: '';
+}
+
+p {
+    margin: 0;
 }
